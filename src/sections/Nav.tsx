@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  { href: "#approach", label: "Approach" },
-  { href: "#services", label: "Services" },
-  { href: "#cold", label: "Cold & Nature" },
-  { href: "#about", label: "About" },
+  { href: "/#approach", label: "Approach" },
+  { href: "/#services", label: "Services" },
+  { href: "/#cold", label: "Cold & Nature" },
+  { href: "/#about", label: "About" },
   // { href: "#experiences", label: "Experiences" }, // section hidden for now
-  { href: "#contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
+  { href: "/podcast", label: "Podcast" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -30,7 +32,7 @@ export default function Nav() {
         }`}
       >
         <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-4 md:px-10 md:py-5">
-          <a href="#top" className="font-display text-xl tracking-[0.18em] text-[var(--cream)]">
+          <a href="/#top" className="font-display text-xl tracking-[0.18em] text-[var(--cream)]">
             SHAMIM KHALED
           </a>
           <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
@@ -45,7 +47,7 @@ export default function Nav() {
             ))}
           </nav>
           <a
-            href="#contact"
+            href="/#contact"
             className="hidden border border-[rgba(239,234,224,0.4)] px-5 py-2 text-[0.625rem] font-semibold uppercase tracking-[0.3em] transition-colors duration-500 hover:border-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--obsidian)] md:block"
           >
             Work With Me
