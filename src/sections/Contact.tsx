@@ -9,19 +9,23 @@ const INQUIRY_TYPES = [
   "Other",
 ];
 
-const EMAIL = "hello@example.com"; // TODO: replace with your real contact email
+const EMAIL = "shamim.khaled@gmail.com";
+
+// Get a free access key at https://web3forms.com — enter shamim.khaled@gmail.com
+// there and the key is emailed to you. Paste it below.
+const WEB3FORMS_ACCESS_KEY = "16dcd9f5-9bad-4e1d-819f-f7abdf71c61a";
 
 export default function Contact() {
-  const [form, setForm] = useState({ type: INQUIRY_TYPES[0], name: "", email: "", org: "", message: "" });
+  const [form, setForm] = useState({ type: INQUIRY_TYPES[0], name: "", email: "", phone: "", org: "", message: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const set = (k: string, v: string) => {
     setForm((f) => ({ ...f, [k]: v }));
     setErrors((e) => ({ ...e, [k]: "" }));
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs: Record<string, string> = {};
     if (!form.name.trim()) errs.name = "Please share your name.";
@@ -30,12 +34,29 @@ export default function Contact() {
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    const subject = encodeURIComponent(`Inquiry — ${form.type} — ${form.name}`);
-    const body = encodeURIComponent(
-      `Inquiry type: ${form.type}\nName: ${form.name}\nEmail: ${form.email}\nOrganization: ${form.org || "—"}\n\n${form.message}`
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Inquiry — ${form.type} — ${form.name}`,
+          from_name: form.name,
+          replyto: form.email,
+          "Inquiry type": form.type,
+          Name: form.name,
+          Email: form.email,
+          Phone: form.phone || "—",
+          Organization: form.org || "—",
+          Message: form.message,
+        }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -73,19 +94,18 @@ export default function Contact() {
 
           {/* form */}
           <div className="md:col-span-6 md:col-start-7">
-            {sent ? (
+            {status === "sent" ? (
               <div className="reveal is-visible flex h-full flex-col items-start justify-center border border-[var(--line-dark)] p-10 md:p-14">
                 <p className="kicker mb-6 text-[var(--glacial)]">Thank you</p>
                 <p className="font-display text-3xl font-light leading-snug md:text-4xl">
-                  Your email draft is open — just press send.
+                  Your inquiry is on its way.
                 </p>
                 <p className="mt-5 max-w-md text-sm leading-relaxed text-[var(--stone)]">
-                  Your inquiry has been prepared in your email app. If it didn't
-                  open, write to me directly at{" "}
+                  I've received your message and will reply personally within a
+                  few days. If it's urgent, you can also write to me directly at{" "}
                   <a href={`mailto:${EMAIL}`} className="u-link text-[var(--cream)]">{EMAIL}</a>.
-                  I'll get back to you personally.
                 </p>
-                <button onClick={() => setSent(false)} className="btn-ghost mt-10">
+                <button onClick={() => setStatus("idle")} className="btn-ghost mt-10">
                   Write Another Inquiry
                 </button>
               </div>
@@ -134,15 +154,28 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="org" className="field-label">Organization (optional)</label>
-                  <input
-                    id="org"
-                    className="field"
-                    placeholder="Team, company, or club"
-                    value={form.org}
-                    onChange={(e) => set("org", e.target.value)}
-                  />
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="phone" className="field-label">Phone (optional)</label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      className="field"
+                      placeholder="+1 555 000 0000"
+                      value={form.phone}
+                      onChange={(e) => set("phone", e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="org" className="field-label">Organization (optional)</label>
+                    <input
+                      id="org"
+                      className="field"
+                      placeholder="Team, company, or club"
+                      value={form.org}
+                      onChange={(e) => set("org", e.target.value)}
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -159,7 +192,14 @@ export default function Contact() {
                 </div>
 
                 <div className="pt-2">
-                  <button type="submit" className="btn-primary">Send Inquiry</button>
+                  <button type="submit" className="btn-primary" disabled={status === "sending"}>
+                    {status === "sending" ? "Sending…" : "Send Inquiry"}
+                  </button>
+                  {status === "error" && (
+                    <p className="mt-4 text-xs text-[var(--glacial)]">
+                      Something went wrong — please try again, or write directly to {EMAIL}.
+                    </p>
+                  )}
                 </div>
               </form>
             )}

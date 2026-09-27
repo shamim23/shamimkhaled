@@ -5,7 +5,7 @@ import Approach from "@/sections/Approach";
 import Services from "@/sections/Services";
 import Cold from "@/sections/Cold";
 import About from "@/sections/About";
-import Experiences from "@/sections/Experiences";
+// import Experiences from "@/sections/Experiences"; // hidden for now
 import Stories from "@/sections/Stories";
 import Contact from "@/sections/Contact";
 import Footer from "@/sections/Footer";
@@ -26,7 +26,7 @@ export default function App() {
         <Services />
         <Cold />
         <About />
-        <Experiences />
+        {/* <Experiences /> — "What's ahead", hidden for now, may return later */}
         <Stories />
         <Contact />
       </main>

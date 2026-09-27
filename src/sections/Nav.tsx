@@ -5,7 +5,7 @@ const LINKS = [
   { href: "#services", label: "Services" },
   { href: "#cold", label: "Cold & Nature" },
   { href: "#about", label: "About" },
-  { href: "#experiences", label: "Experiences" },
+  // { href: "#experiences", label: "Experiences" }, // section hidden for now
   { href: "#contact", label: "Contact" },
 ];
 
@@ -31,7 +31,7 @@ export default function Nav() {
       >
         <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-4 md:px-10 md:py-5">
           <a href="#top" className="font-display text-xl tracking-[0.18em] text-[var(--cream)]">
-            ARETÉ
+            SHAMIM KHALED
           </a>
           <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
             {LINKS.map((l) => (

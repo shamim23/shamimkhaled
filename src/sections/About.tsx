@@ -7,43 +7,42 @@ export default function About() {
           <div className="reveal md:col-span-4">
             <div className="overflow-hidden">
               <img
-                src="/images/portrait.jpg"
-                alt="A figure standing in tall windswept grass overlooking a foggy river valley at first light"
+                src="/images/Untitled%20design.png"
+                alt="Portrait of Shamim Khaled"
                 loading="lazy"
                 className="parallax h-[420px] w-full scale-110 object-cover md:h-[560px]"
                 data-parallax="0.07"
               />
             </div>
-            <p className="mt-4 text-xs text-[rgba(10,13,11,0.55)]">
-              Portrait — replace with your own photograph.
-            </p>
           </div>
 
           {/* story */}
           <div className="md:col-span-7 md:col-start-6">
             <p className="reveal kicker mb-6 text-[rgba(10,13,11,0.55)]">About</p>
             <h2 className="reveal font-display text-[clamp(2.25rem,4.5vw,3.75rem)] font-light leading-[1.08]">
-              Hi, I'm <span className="italic">[Your Name]</span>.
+              Hi, I'm <span className="italic">Shamim Khaled</span>.
             </h2>
 
             <div className="reveal mt-8 space-y-5 text-[0.95rem] leading-relaxed text-[rgba(10,13,11,0.75)]" style={{ ["--reveal-delay" as string]: "0.15s" }}>
               <p>
-                [Your story — two or three honest paragraphs. What led you to
-                this work? What did nature, stress, or the cold teach you that
-                you couldn't learn anywhere else? What changed in you, and why
-                do you now create these experiences for others?]
+                I'm a transformational coach and AI engineer with a deep
+                fascination for human performance and longevity — what allows
+                us to think clearer, live longer, and operate closer to our
+                true capacity.
+              </p>
+              <p>
+                My curiosity has taken me to over 30 countries, where I've
+                studied different modalities of healing, resilience, and
+                transformation — from ancient practices to modern science. As a
+                certified Cold Club instructor, I've seen firsthand how
+                deliberate discomfort rewires the nervous system and builds
+                unshakeable calm.
               </p>
               <p>
                 What you can expect when working with me: a calm, grounded
                 presence; experiences that are challenging but carefully held;
                 honest conversation without jargon or inflated promises; and
                 deep respect for your pace, your body, and your goals.
-              </p>
-              <p>
-                I work with individuals, organizations, and high-performance
-                athletes — anywhere people are ready to step outside their
-                habitual patterns and explore what they're capable of,
-                physically, mentally, and emotionally.
               </p>
             </div>
 
@@ -56,15 +55,15 @@ export default function About() {
                 </li>
                 <li className="flex items-baseline gap-3">
                   <span className="h-px w-5 shrink-0 translate-y-[-4px] bg-[rgba(10,13,11,0.4)]" />
-                  [Coaching certification / training]
+                  Transformational Coaching
                 </li>
                 <li className="flex items-baseline gap-3">
                   <span className="h-px w-5 shrink-0 translate-y-[-4px] bg-[rgba(10,13,11,0.4)]" />
-                  [Years of experience / background]
+                  AI Engineering
                 </li>
                 <li className="flex items-baseline gap-3">
                   <span className="h-px w-5 shrink-0 translate-y-[-4px] bg-[rgba(10,13,11,0.4)]" />
-                  [Other relevant training]
+                  Modalities studied across 30+ countries
                 </li>
               </ul>
             </div>
