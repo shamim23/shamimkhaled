@@ -1,0 +1,28 @@
+src/App.tsx
+  h_16ae4311bb310d 1-2,14-16,20-43,50,52-57
+src/data/blog.ts
+  h_16ae4311bb310d 1-45
+src/data/podcasts.ts
+  h_16ae4311bb310d 1-41
+src/pages/Blog.tsx
+  h_16ae4311bb310d 1-2,4-9,11,13-25,27-50,52-53
+src/pages/BlogPost.tsx
+  h_16ae4311bb310d 1-52
+src/pages/Podcast.tsx
+  h_16ae4311bb310d 1-86
+src/sections/Nav.tsx
+  h_16ae4311bb310d 4-7,9-11,35,50
+vercel.json
+  h_16ae4311bb310d 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "604f37865504af18968d7505af7e4e16fce60ce7",
+  "prompts": {},
+  "humans": {
+    "h_16ae4311bb310d": {
+      "author": "shamim khaled <shamim.khaled@gmail.com>"
+    }
+  }
+}
