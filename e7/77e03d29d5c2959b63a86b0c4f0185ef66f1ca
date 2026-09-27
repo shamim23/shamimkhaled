@@ -1,0 +1,14 @@
+src/App.tsx
+  h_16ae4311bb310d 9,30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "e777e03d29d5c2959b63a86b0c4f0185ef66f1ca",
+  "prompts": {},
+  "humans": {
+    "h_16ae4311bb310d": {
+      "author": "shamim khaled <shamim.khaled@gmail.com>"
+    }
+  }
+}
