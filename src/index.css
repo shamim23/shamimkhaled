@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --obsidian: #0a0d0b;
+  --forest: #101c15;
+  --pine: #16261e;
+  --cream: #efeae0;
+  --cream-dim: #d8d2c4;
+  --stone: #9aa198;
+  --glacial: #a8cdd3;
+  --line-dark: rgba(239, 234, 224, 0.14);
+  --line-light: rgba(10, 13, 11, 0.14);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--obsidian);
+  color: var(--cream);
+  font-family: "Manrope", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--glacial);
+  color: var(--obsidian);
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+.font-display {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(44px);
+  filter: blur(6px);
+  transition:
+    opacity 1.4s cubic-bezier(0.2, 0.6, 0, 1),
+    transform 1.4s cubic-bezier(0.2, 0.6, 0, 1),
+    filter 1.4s cubic-bezier(0.2, 0.6, 0, 1);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform, filter;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .hero-img {
+    animation: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* ---------- hero cinematic drift ---------- */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.14) translateY(0);
+  }
+  100% {
+    transform: scale(1.02) translateY(-1.5%);
+  }
+}
+.hero-img {
+  animation: kenburns 9s cubic-bezier(0.2, 0.6, 0, 1) both;
+  will-change: transform;
+}
+
+/* ---------- parallax ---------- */
+.parallax {
+  will-change: transform;
+}
+
+/* ---------- outlined numerals / display ---------- */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(239, 234, 224, 0.32);
+}
+.text-outline-dark {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(10, 13, 11, 0.3);
+}
+
+/* ---------- kicker ---------- */
+.kicker {
+  font-size: 0.6875rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ---------- underline link ---------- */
+.u-link {
+  position: relative;
+  display: inline-block;
+}
+.u-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.2, 0.6, 0, 1);
+}
+.u-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- buttons ---------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--cream);
+  color: var(--obsidian);
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid var(--cream);
+  transition:
+    background 0.5s cubic-bezier(0.2, 0.6, 0, 1),
+    color 0.5s cubic-bezier(0.2, 0.6, 0, 1),
+    border-color 0.5s cubic-bezier(0.2, 0.6, 0, 1);
+}
+.btn-primary:hover {
+  background: var(--glacial);
+  border-color: var(--glacial);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  color: var(--cream);
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid rgba(239, 234, 224, 0.4);
+  transition:
+    border-color 0.5s cubic-bezier(0.2, 0.6, 0, 1),
+    background 0.5s cubic-bezier(0.2, 0.6, 0, 1);
+}
+.btn-ghost:hover {
+  border-color: var(--cream);
+  background: rgba(239, 234, 224, 0.06);
+}
+.btn-ghost-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  color: var(--obsidian);
+  padding: 1rem 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: 1px solid rgba(10, 13, 11, 0.4);
+  transition:
+    border-color 0.5s cubic-bezier(0.2, 0.6, 0, 1),
+    background 0.5s cubic-bezier(0.2, 0.6, 0, 1);
+}
+.btn-ghost-dark:hover {
+  border-color: var(--obsidian);
+  background: rgba(10, 13, 11, 0.05);
+}
+
+/* ---------- service rows ---------- */
+.service-row {
+  position: relative;
+  overflow: hidden;
+}
+.service-row .service-img {
+  transition: transform 2.4s cubic-bezier(0.2, 0.6, 0, 1);
+}
+.service-row:hover .service-img {
+  transform: scale(1.05);
+}
+
+/* ---------- form ---------- */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line-dark);
+  padding: 0.9rem 0;
+  color: var(--cream);
+  font-size: 0.95rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.4s ease;
+  border-radius: 0;
+}
+.field::placeholder {
+  color: rgba(239, 234, 224, 0.35);
+}
+.field:focus {
+  border-color: var(--glacial);
+}
+select.field {
+  appearance: none;
+  cursor: pointer;
+}
+select.field option {
+  background: var(--forest);
+  color: var(--cream);
+}
+.field-label {
+  display: block;
+  font-size: 0.625rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 36s linear infinite;
+}
+
+/* ---------- grain ---------- */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- scroll indicator ---------- */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.4;
+  }
+}
+.scroll-hint {
+  animation: drift 2.8s ease-in-out infinite;
+}
